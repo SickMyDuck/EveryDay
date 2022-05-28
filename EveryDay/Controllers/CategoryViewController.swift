@@ -7,10 +7,10 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 
 
-class CategoryViewController: UITableViewController {
+
+class CategoryViewController: SwipeTableViewController {
 
     var categoryArray = [Category]()
     
@@ -20,6 +20,7 @@ class CategoryViewController: UITableViewController {
         super.viewDidLoad()
 
         loadCategories()
+    
         
     }
 
@@ -34,14 +35,14 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         let category = categoryArray[indexPath.row]
         
         cell.textLabel?.text = category.name
-   
-        return cell
         
+        return cell
+
     }
     
     //MARK: - tableView Delegate Methods
@@ -83,6 +84,18 @@ class CategoryViewController: UITableViewController {
         }
     }
     
+    //MARK: - Delete Method From Swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+                    self.context.delete(self.categoryArray[indexPath.row])
+        
+                    self.categoryArray.remove(at: indexPath.row)
+        
+                    self.saveCategories()
+                    
+                    tableView.reloadData()
+    }
+    
     //MARK: - Add Button Methods
     
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {
@@ -109,3 +122,4 @@ class CategoryViewController: UITableViewController {
         present(alert, animated: true)
     }
 }
+

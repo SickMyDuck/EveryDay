@@ -16,6 +16,7 @@
 		59BB50842836C0A8004B160B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59BB50822836C0A8004B160B /* LaunchScreen.storyboard */; };
 		59BB50B62838C1A3004B160B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59BB50B42838C1A3004B160B /* DataModel.xcdatamodeld */; };
 		59BB50BA283AD31F004B160B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB50B9283AD31F004B160B /* CategoryViewController.swift */; };
+		59BB50C2283EDC26004B160B /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB50C1283EDC26004B160B /* SwipeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		59BB50852836C0A8004B160B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59BB50B52838C1A3004B160B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		59BB50B9283AD31F004B160B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		59BB50C1283EDC26004B160B /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		5F13FEB82718047D6E35E988 /* Pods-EveryDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EveryDay.release.xcconfig"; path = "Target Support Files/Pods-EveryDay/Pods-EveryDay.release.xcconfig"; sourceTree = "<group>"; };
 		639F876D39E1997F08B8DEAE /* Pods_EveryDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EveryDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				59BB50B9283AD31F004B160B /* CategoryViewController.swift */,
+				59BB50C1283EDC26004B160B /* SwipeTableViewController.swift */,
 				59BB507B2836C0A7004B160B /* ToDoListViewController.swift */,
 			);
 			path = Controllers;
@@ -118,7 +121,6 @@
 				4EFF79C3BAFB07AB07F70FB0 /* Pods-EveryDay.debug.xcconfig */,
 				5F13FEB82718047D6E35E988 /* Pods-EveryDay.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -249,6 +251,7 @@
 				59BB50B62838C1A3004B160B /* DataModel.xcdatamodeld in Sources */,
 				59BB507C2836C0A7004B160B /* ToDoListViewController.swift in Sources */,
 				59BB50782836C0A7004B160B /* AppDelegate.swift in Sources */,
+				59BB50C2283EDC26004B160B /* SwipeTableViewController.swift in Sources */,
 				59BB507A2836C0A7004B160B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

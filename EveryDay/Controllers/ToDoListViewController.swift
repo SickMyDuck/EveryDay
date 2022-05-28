@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UITableViewController{
+class ToDoListViewController: SwipeTableViewController{
 
     var itemArray = [Item]()
     
@@ -34,7 +34,7 @@ class ToDoListViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         let item = itemArray[indexPath.row]
         
@@ -65,6 +65,17 @@ class ToDoListViewController: UITableViewController{
         
     }
     
+    //MARK: - Delete Method From Swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+                    self.context.delete(self.itemArray[indexPath.row])
+        
+                    self.itemArray.remove(at: indexPath.row)
+        
+                    self.saveItems()
+                    
+                    tableView.reloadData()
+    }
     //MARK: - Add New Items
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
