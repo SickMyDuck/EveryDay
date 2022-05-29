@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 class ToDoListViewController: SwipeTableViewController{
 
@@ -18,13 +19,40 @@ class ToDoListViewController: SwipeTableViewController{
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadItems()
+        
+        tableView.separatorStyle = .none
+        
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let color = selectedCategory?.colorHex {
+            
+            title = selectedCategory!.name
+            
+            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Controller Does Not Exist")}
+            
+           
+            
+            if let navBarColor = UIColor(hexString: color) {
+                
+                navBar.backgroundColor = navBarColor
+                
+                navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+                
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor :ContrastColorOf(navBarColor, returnFlat: true)]
+                searchBar.barTintColor = navBarColor
+            }
+            
+        }
     }
 
     //MARK: - Tableview Datasource Methods
@@ -41,6 +69,11 @@ class ToDoListViewController: SwipeTableViewController{
         cell.textLabel?.text = item.title
 
         cell.accessoryType = item.done ? .checkmark : .none
+        
+        if let colorHex = selectedCategory!.colorHex, let color = UIColor(hexString:colorHex)?.darken(byPercentage:CGFloat(indexPath.row) / CGFloat(itemArray.count)) {
+            cell.backgroundColor = color
+            cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+        }
         
         return cell
     }

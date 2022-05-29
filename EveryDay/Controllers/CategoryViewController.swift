@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 
 
@@ -22,6 +23,11 @@ class CategoryViewController: SwipeTableViewController {
         loadCategories()
     
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Controller Does Not Exist")}
+        navBar.backgroundColor = UIColor(hexString: "1D9BF6")
     }
 
 
@@ -41,6 +47,16 @@ class CategoryViewController: SwipeTableViewController {
         
         cell.textLabel?.text = category.name
         
+        if let hexColor = category.colorHex {
+           
+            guard let categoryColor = UIColor(hexString: hexColor) else {fatalError()}
+            
+            cell.backgroundColor = categoryColor
+            
+            cell.textLabel?.textColor = ContrastColorOf(categoryColor, returnFlat: true)
+        }
+        
+
         return cell
 
     }
@@ -107,7 +123,11 @@ class CategoryViewController: SwipeTableViewController {
         let action = UIAlertAction(title: "Add category", style: .default) { (action) in
             
             let newCategory = Category(context: self.context)
+            
             newCategory.name = textField.text!
+            
+            newCategory.colorHex = UIColor.randomFlat().hexValue()
+            
             self.categoryArray.append(newCategory)
             
             self.saveCategories()
