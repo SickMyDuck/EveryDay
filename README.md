@@ -1,2 +1,2 @@
 # EveryDay
-# simple ToDo App using CoreData
+simple ToDo App using CoreData
